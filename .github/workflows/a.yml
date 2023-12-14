@@ -20,8 +20,9 @@ jobs:
           DEBIAN_FRONTEND="noninteractive" apt-get install -y sudo software-properties-common dialog apt-utils tzdata libpng-dev locales
       - name: Setup R
         run: |
-          echo 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/' >> /etc/apt/sources.list
-          wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-          DEBIAN_FRONTEND="noninteractive" apt-get update -y
-          DEBIAN_FRONTEND="noninteractive" apt-get install -y r-base
+          `which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
+          `which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
+          `which sudo` apt update
+          `which sudo` apt install r-rig
+          rig add release
       - run: Rscript -e 'print("hello")'
