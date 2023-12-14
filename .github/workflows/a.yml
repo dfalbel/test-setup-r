@@ -17,7 +17,7 @@ jobs:
       - name: Sys deps
         run: |
           DEBIAN_FRONTEND="noninteractive" apt-get update -y
-          DEBIAN_FRONTEND="noninteractive" apt-get install -y sudo software-properties-common dialog apt-utils tzdata libpng-dev locales
+          DEBIAN_FRONTEND="noninteractive" apt-get install -y sudo software-properties-common dialog apt-utils tzdata libpng-dev locales curl
       - name: Setup R
         run: |
           `which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
