@@ -21,6 +21,7 @@ jobs:
       - name: Setup R
         run: |
           echo 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/' >> /etc/apt/sources.list
+          wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
           DEBIAN_FRONTEND="noninteractive" apt-get update -y
           DEBIAN_FRONTEND="noninteractive" apt-get install -y r-base
       - run: Rscript -e 'print("hello")'
