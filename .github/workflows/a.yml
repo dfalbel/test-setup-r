@@ -18,7 +18,8 @@ jobs:
           DEBIAN_FRONTEND="noninteractive" apt-get update -y
           DEBIAN_FRONTEND="noninteractive" apt-get install -y sudo software-properties-common dialog apt-utils tzdata libpng-dev locales
       - name: Setup R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: release
+        run: |
+          echo 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/' >> /etc/apt/sources.list
+          DEBIAN_FRONTEND="noninteractive" apt-get update -y
+          DEBIAN_FRONTEND="noninteractive" apt-get install -y r-base
       - run: Rscript -e 'print("hello")'
